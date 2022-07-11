@@ -16,7 +16,6 @@ function preload(){
   indianaImg = loadImage("indiana jones game.gif");
   fundo = loadImage("fundo jogo indiana.png");
   obstaculoImg = loadImage("obstaculo_do_jogo.png");
-  soloImg = loadImage("solo do jogo.png");
 }
 
 function setup() {
@@ -34,8 +33,9 @@ function setup() {
   obstaculo.setCollider('circle', 0, 0, 350)
   obstaculo.scale = 1.7
 
-  solo.addImage("soloImg",soloImg);
-  solo = new Ground(width / 2, height - 10, width, 20);
+
+  solo = new Solo(width / 2, height - 10, width, 20);
+  World.add(world, this.solo)
 }
 
 
@@ -45,5 +45,7 @@ function draw() {
   Engine.update(engine);
   solo.show();
   drawSprites();
+
+  image("solo do jogo.png", solo.position.x, solo.position.y, largura, altura);
 }
 
