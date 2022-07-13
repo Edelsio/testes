@@ -4,18 +4,22 @@ const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
 
-var bola_de_pedra;
-var solo;
+var bola_de_pedra, bola_de_pedraImg;
+var solo, soloImg;
 
 var fundoImg;
 var obstaculo, obstaculoImg;
 var indiana_jones, indianaImg;
+
+var PLAY;
+var END;
 
 function preload(){
 
   indianaImg = loadImage("indiana jones game.gif");
   fundo = loadImage("fundo jogo indiana.png");
   obstaculoImg = loadImage("obstaculo_do_jogo.png");
+  soloImg = loadImage("solo do jogo.png")
 }
 
 function setup() {
@@ -25,27 +29,31 @@ function setup() {
   
   indiana_jones = createSprite(400, 600, 100, 100);
   indiana_jones.addImage("indianaImg",indianaImg);
-  indiana_jones.setCollider('circle', 0, 0, 350)
+  indiana_jones.setCollider('circle', 0, 0, 100)
   indiana_jones.scale = 0.5
-
+  
   obstaculo = createSprite(600, 600, 100, 100)
   obstaculo.addImage("obstaculoImg", obstaculoImg)
   obstaculo.setCollider('circle', 0, 0, 350)
   obstaculo.scale = 1.7
 
+  prop = {density:0.0005}
 
+  bola_de_pedra = Bodies.circle(width / 2, height / 2, 20, prop);
+  World.add(world, this.bola_de_pedra);
   solo = new Solo(width / 2, height - 10, width, 20);
-  World.add(world, this.solo)
 }
 
 
 function draw() {
-  // indiana_jones.debug=true
+   indiana_jones.debug=true
   background(fundo);
   Engine.update(engine);
+
   solo.show();
+  bola_de_pedra.show()
   drawSprites();
 
-  image("solo do jogo.png", solo.position.x, solo.position.y, largura, altura);
+  image(soloImg, solo.position.x, solo.position.y, 100, 20);
 }
 
