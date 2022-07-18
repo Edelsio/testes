@@ -18,7 +18,7 @@ class Solo
     rectMode(CENTER);
     noStroke();
     fill(148,127,146);
-    rect(pos.x,pos.y, this.w, this.h);
+    rect(soloImg, pos.x,pos.y, this.w, this.h);
     pop();
   }
 }
